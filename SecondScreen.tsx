@@ -24,14 +24,23 @@ function SecondScreen({ route }) {
     <View>
       <Text>This is the Second Screen</Text>
       <Image
-        source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Delleboersterheide%2C_natuurgebied_van_het_It_Fryske_Gea._25-12-2019._%28actm.%29_10.jpg/2560px-Delleboersterheide%2C_natuurgebied_van_het_It_Fryske_Gea._25-12-2019._%28actm.%29_10.jpg' }}
+        source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Latin_dictionary.jpg/440px-Latin_dictionary.jpg' }}
         style={styles.image}
       />
       {apiData && (
         <View>
           <Text>API Data:</Text>
-          <Text>Title: {apiData.title}</Text>
-          <Text>Body: {apiData.body}</Text>
+          <Text>Title: {apiData[0].word}</Text>
+          <Text>Body: {apiData[0].phonetic}</Text>
+
+          <Text>Definitions:</Text>
+          {apiData[0].meanings.map((meaning, index) => (
+            <View key={index}>
+              <Text>Part of Speech: {meaning.partOfSpeech}</Text>
+              <Text>Definition: {meaning.definitions[0].definition}</Text>
+              <Text>Example: {meaning.definitions[0].example}</Text>
+              </View>
+          ))}
         </View>
       )}
       <Button title="Go Back" 

@@ -50,7 +50,7 @@ export default function HomeScreen({ navigation }) {
       <Button
         color={'teal'}
         title="Click to go to Second Screen"
-        onPress={() => navigateToScreen(navigation, 'Second')}
+        onPress={() => navigateToScreen(navigation, 'Second', { word: displayTexts[displayTexts.length - 1] })}
       />
       </View>
       <StatusBar style="auto" />
