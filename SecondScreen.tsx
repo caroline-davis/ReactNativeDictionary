@@ -1,15 +1,12 @@
 // SecondScreen.js
 import React, { useState, useEffect } from 'react'; 
-import { View, Text, Button, Image } from 'react-native';
-import { navigateToScreen } from './navigation';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Image, ScrollView } from 'react-native';
 import { fetchDataFromAPI } from './api';
 import styles from './styles'
 
 function SecondScreen({ route }) {
 
   const [apiData, setApiData] = useState<any>(null)
-  const navigation = useNavigation()
 
   useEffect(() => {
     if (route.params && route.params.word) {
@@ -22,29 +19,35 @@ function SecondScreen({ route }) {
 
   return (
     <View>
-      <Text>This is the Second Screen</Text>
+      <ScrollView contentContainerStyle={styles.scrollView}>
       <Image
         source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Latin_dictionary.jpg/440px-Latin_dictionary.jpg' }}
         style={styles.image}
       />
       {apiData && (
         <View>
-          <Text>API Data:</Text>
-          <Text>Title: {apiData[0].word}</Text>
-          <Text>Body: {apiData[0].phonetic}</Text>
-
-          <Text>Definitions:</Text>
+          <View style={styles.middleContainer}>
+            <Text style={styles.largeText}>{apiData[0].word}</Text>
+          </View>
           {apiData[0].meanings.map((meaning, index) => (
-            <View key={index}>
-              <Text>Part of Speech: {meaning.partOfSpeech}</Text>
-              <Text>Definition: {meaning.definitions[0].definition}</Text>
-              <Text>Example: {meaning.definitions[0].example}</Text>
+            <View style={styles.displayContainerRow} key={index}>
+              <View style={styles.displayInfoRow}>
+                <Text style={styles.outputText}>Type:</Text>
+                <Text style={styles.normalText}>{meaning.partOfSpeech}</Text>
               </View>
+              <View style={styles.displayInfoRow}>
+                <Text style={styles.outputText}>Definition:</Text>
+                <Text style={styles.normalText}>{meaning.definitions[0].definition}</Text>
+              </View>
+              <View style={styles.displayInfoRow}>
+                <Text style={styles.outputText}>Example:</Text>
+                <Text style={styles.normalText}>{meaning.definitions[0].example}</Text>
+              </View>
+            </View>
           ))}
         </View>
       )}
-      <Button title="Go Back" 
-      onPress={() => navigateToScreen(navigation, 'Home')} />
+    </ScrollView>
     </View>
   );
 }

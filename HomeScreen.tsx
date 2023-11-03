@@ -27,7 +27,6 @@ export default function HomeScreen({ navigation }) {
       <ScrollView contentContainerStyle={styles.scrollView}>
       <Text style={styles.headingText}>What does it mean?</Text>
       <Text style={styles.mainText}>Add a word below:</Text>
-      {/* <View style={styles.horizontalContainer}> </View> */}
       <TextInput
         style={styles.inputText}
         placeholder="Type something"

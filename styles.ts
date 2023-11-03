@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       paddingTop: 20
     },
+    middleContainer: {
+      alignItems: 'center'
+    },
     horizontalContainer: {
       flex: 1,
       flexDirection: 'row',
@@ -53,6 +56,9 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 16,
     },
+    normalText: {
+      fontSize: 16,
+    },
     headingAndTextContainer: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -83,6 +89,15 @@ const styles = StyleSheet.create({
     scrollView: {
       alignItems: 'center',
       paddingTop: 20
+    },
+    displayInfoRow: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      padding: 5,
+      justifyContent: 'flex-start'
+    },
+    displayContainerRow: {
+      padding: 30
     }
   });
 
