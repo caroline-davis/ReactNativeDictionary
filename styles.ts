@@ -4,6 +4,7 @@ const colors = {
   teal: 'teal',
   black: 'black',
   white: 'white',
+  red: 'red',
 };
 
 const fontSizes = {
@@ -48,12 +49,12 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+    marginBottom: 20
   },
   button: {
     marginTop: padding.small,
     borderRadius: 30,
     padding: padding.large,
-    backgroundColor: colors.teal,
     color: colors.white,
   },
   inputText: {
@@ -62,6 +63,10 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.medium,
     marginTop: padding.small,
     marginBottom: padding.large,
+  },
+  errorText: {
+    color: colors.red,
+    fontSize: fontSizes.medium
   },
   outputText: {
     padding: 0,

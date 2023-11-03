@@ -15,7 +15,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   const handlePressDone = () => {
-    if (inputText.trim() !== '') {
+    if (inputText.trim() !== '' && !inputText.includes(' ')) {
       setDisplayTexts([...displayTexts, inputText]);
     setInputText('');
     }

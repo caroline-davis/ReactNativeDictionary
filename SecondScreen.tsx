@@ -1,12 +1,14 @@
 // SecondScreen.js
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, ScrollView } from 'react-native'
+import { View, Text, Image, ScrollView, ActivityIndicator } from 'react-native'
 import { fetchDataFromAPI } from './api'
 import styles from './styles'
 
 function SecondScreen({ route }) {
 
   const [apiData, setApiData] = useState<any>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     if (route.params && route.params.word) {
@@ -17,10 +19,14 @@ function SecondScreen({ route }) {
 
   const fetchData = async (word) => {
     try {
+      setIsLoading(true)
       const data = await fetchDataFromAPI(word)
       setApiData(data)
     } catch (error) {
       console.error("Error fetching data:", error)
+      setError(error.message)
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -31,7 +37,13 @@ function SecondScreen({ route }) {
           source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Latin_dictionary.jpg/440px-Latin_dictionary.jpg' }}
           style={styles.image}
         />
-        {apiData && renderApiData(apiData)}
+        {isLoading ? (
+          <ActivityIndicator size="large" color="teal" />
+        ) : error ? (
+          <Text style={styles.errorText}>{error}</Text>
+        ) : (
+          apiData && renderApiData(apiData)
+        )}
       </ScrollView>
     </View>
   );

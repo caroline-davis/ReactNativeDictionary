@@ -7,13 +7,13 @@ interface TextDisplayProps {
 }
 
 const TextDisplay: React.FC<TextDisplayProps> = ({ displayTexts }) => (
-    <View style={styles.outputTextContainer}>
+    <View style={styles.displayContainerRow}>
         <View style={styles.textRow}>
             {displayTexts.map((text, index) => (
                 <Text 
                 key={index}
                 style={styles.outputText}
-                >{text + ", "}</Text>
+                >{index !== 0 ? `, ${text}` : text}</Text>
             ))}
             </View>
     </View>
